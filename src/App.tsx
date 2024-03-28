@@ -7,11 +7,11 @@ function App() {
     axios("https://pokeapi.co/api/v2/pokemon").then((res) => res.data.results),
   );
 
-  console.log("queryInfo", queryInfo);
-
-  return (
+  return queryInfo.isLoading ? (
+    <div>"Loading..."</div>
+  ) : (
     <div className="App">
-      {queryInfo.data?.map((result) => {
+      {queryInfo.data.map((result) => {
         return <div key={result.name}>{result.name}</div>;
       })}
     </div>
