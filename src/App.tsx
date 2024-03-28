@@ -1,8 +1,12 @@
 import React from "react";
-import { useQuery } from "react-query";
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
 function App() {
-  console.log("useQuery", useQuery);
+  const queryInfo = useQuery("pokemon", () =>
+    fetch("https://pokeapi.com/api/v2/pokemon").then((res) => res.json()),
+  );
+
+  console.log("queryInfo", queryInfo);
 
   return <div className="App">hi</div>;
 }
