@@ -17,7 +17,7 @@ function Pokemon() {
         (res) => res.data.results,
       );
     },
-    { refetchOnWindowFocus: true },
+    { staleTime: 5000 },
   );
 
   return queryInfo.isLoading ? (
