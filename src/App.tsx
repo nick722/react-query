@@ -4,15 +4,21 @@ import axios from "axios";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 function Pokemon() {
-  const queryInfo = useQuery("pokemon", () => {
-    // if (true) {
-    //   throw new Error("Test error");
-    // }
+  const queryInfo = useQuery(
+    "pokemon",
+    async () => {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    return axios("https://pokeapi.co/api/v2/pokemon").then(
-      (res) => res.data.results,
-    );
-  });
+      // if (true) {
+      //   throw new Error("Test error");
+      // }
+
+      return axios("https://pokeapi.co/api/v2/pokemon").then(
+        (res) => res.data.results,
+      );
+    },
+    { refetchOnWindowFocus: false },
+  );
 
   return queryInfo.isLoading ? (
     <div>"Loading..."</div>
