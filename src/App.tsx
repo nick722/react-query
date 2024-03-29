@@ -17,7 +17,7 @@ function Pokemon() {
         (res) => res.data.results,
       );
     },
-    { refetchOnWindowFocus: false },
+    { refetchOnWindowFocus: true },
   );
 
   return queryInfo.isLoading ? (
@@ -29,6 +29,8 @@ function Pokemon() {
       {queryInfo.data.map((result) => {
         return <div key={result.name}>{result.name}</div>;
       })}
+      <br />
+      {queryInfo.isFetching ? "Updating..." : null}
     </div>
   );
 }
