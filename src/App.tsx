@@ -1,8 +1,9 @@
 import React from "react";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import axios from "axios";
+import { ReactQueryDevtools } from "react-query/devtools";
 
-function App() {
+function Pokemon() {
   const queryInfo = useQuery("pokemon", () => {
     // if (true) {
     //   throw new Error("Test error");
@@ -22,6 +23,15 @@ function App() {
       {queryInfo.data.map((result) => {
         return <div key={result.name}>{result.name}</div>;
       })}
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <Pokemon />
+      <ReactQueryDevtools />
     </div>
   );
 }
